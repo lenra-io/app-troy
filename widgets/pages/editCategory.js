@@ -269,24 +269,6 @@ function fieldUI(category, field, editable) {
                         bottom: 0.5,
                         right: 0.5
                     },
-                    // border: {
-                    //     top: {
-                    //         color: 0xFFFF5555,
-                    //         width: 2
-                    //     },
-                    //     right: {
-                    //         color: 0xFFFF5555,
-                    //         width: 2
-                    //     },
-                    //     left: {
-                    //         color: 0xFFFF5555,
-                    //         width: 2
-                    //     },
-                    //     bottom: {
-                    //         color: 0xFFFF5555,
-                    //         width: 2
-                    //     },
-                    // },
                     child: {
                         type: "text",
                         value: err.message + " !",
