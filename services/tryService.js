@@ -33,7 +33,7 @@ module.exports = {
             "$find": {
                 "_datastore": datastoreName,
                 "_refs": {
-                    "$constains": "@me"
+                    "$contains": "@me"
                 }
             }
         });
@@ -48,7 +48,7 @@ module.exports = {
             "$find": {
                 "_datastore": categoryService.datastoreName,
                 "_refBy": {
-                    "$constains": tryId
+                    "$contains": tryId
                 }
             }
         }).then(categories => categories[0]);
