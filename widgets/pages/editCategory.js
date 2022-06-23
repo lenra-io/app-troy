@@ -66,6 +66,10 @@ function content(_data, { state }) {
  */
 function category(categories, props) {
     const category = categories[0];
+    console.log("----------------CATEGORIES--------------------")
+    console.log(categories)
+    console.log("----------------CATEGORIES--------------------")
+    console.log(category)
     const nameErrors = {},
         fieldListErrors = [],
         fieldsErrors = {};
@@ -84,7 +88,8 @@ function category(categories, props) {
                 fEr[target[1]].push(er.message);
             });
     }
-
+    console.log("----------------------FIELD LIST ERRORS----------------------");
+    console.log(fieldListErrors);
     let name = category.name;
     let modification = category.modifications.find(m => m.property == 'name');
     if (modification)
@@ -146,10 +151,12 @@ function category(categories, props) {
                             }
                         }
                     },
-                    ...fieldListErrors.map(error => ({
-                        type: "text",
-                        value: error.message
-                    })),
+                    // ...category.errors.map(error => (
+                    //     {
+                    //         type: "text",
+                    //         value: "TEST " + error.message
+                    //     })),
+
                     ...category.fields.map(field => fieldUI(category, field)),
                     ...category.modifications
                         .filter(m => m.action == 'add' && m.property == 'fields')
@@ -191,68 +198,128 @@ function category(categories, props) {
  * @returns 
  */
 function fieldUI(category, field, editable) {
+    var myErrors = [];
+    console.log("-----------FIELD ID-----------");
+    console.log(field);
+    console.log("-----------CATEGORY-----------");
+    console.log(category);
+    console.log("-----------FOREACH-----------");
+    (category.errors).forEach(err => {
+        console.log(err);
+        console.log(field);
+        if (err.target.split('.')[1] == field.id) {
+            myErrors.push(err);
+        }
+    });
+
+    console.log("-----------CATEGORY-----------")
+    console.log("-----------CATEGORY-----------")
+    console.log("-----------CATEGORY-----------")
+    console.log(myErrors);
     return {
         type: "flex",
-        crossAxisAlignment: "center",
-        fillParent: true,
-        spacing: 2,
+        direction: "vertical",
         children: [
             {
-                type: "flexible",
-                fit: "tight",
-                flex: 1,
-                child: {
-                    type: "textfield",
-                    enabled: !!editable,
-                    // hintText: "Field name",
-                    value: field.name || "",
-                    onChanged: {
-                        action: "setCategoryFieldName",
-                        props: {
-                            categoryId: category._id,
-                            fieldId: field.id
+                type: "flex",
+                crossAxisAlignment: "center",
+                fillParent: true,
+                spacing: 2,
+                children: [
+                    {
+                        type: "flexible",
+                        fit: "tight",
+                        flex: 1,
+                        child: {
+                            type: "textfield",
+                            enabled: !!editable,
+                            // hintText: "Field name",
+                            value: field.name || "",
+                            onChanged: {
+                                action: "setCategoryFieldName",
+                                props: {
+                                    categoryId: category._id,
+                                    fieldId: field.id
+                                }
+                            }
+                        }
+                    },
+                    {
+                        type: "dropdownButton",
+                        text: field.unit ? `${field.unit.name} (${field.unit.shortName})` : 'Choose unit',
+                        mainStyle: "secondary",
+                        disabled: !editable,
+                        // icon: "expand_more",
+                        child: {
+                            type: "menu",
+                            children:
+                                unitList.map((unit) => {
+                                    return {
+                                        type: "menuItem",
+                                        text: `${unit.name} (${unit.shortName})`,
+                                        onPressed: {
+                                            action: "setCategoryFieldUnit",
+                                            props: {
+                                                categoryId: category._id,
+                                                fieldId: field.id,
+                                                unit: unit,
+                                            }
+                                        }
+                                    }
+                                }),
+                        }
+                    },
+                    {
+                        type: "button",
+                        mainStyle: "tertiary",
+                        text: "X",
+                        disabled: !editable,
+                        onPressed: {
+                            action: "removeCategoryField",
+                            props: {
+                                categoryId: category._id,
+                                fieldId: field.id
+                            }
+                        }
+                    }
+                ]
+            },
+            ...myErrors.map(err => {
+                return {
+                    type: "container",
+                    padding: {
+                        top: 0.5,
+                        left: 0.5,
+                        bottom: 0.5,
+                        right: 0.5
+                    },
+                    // border: {
+                    //     top: {
+                    //         color: 0xFFFF5555,
+                    //         width: 2
+                    //     },
+                    //     right: {
+                    //         color: 0xFFFF5555,
+                    //         width: 2
+                    //     },
+                    //     left: {
+                    //         color: 0xFFFF5555,
+                    //         width: 2
+                    //     },
+                    //     bottom: {
+                    //         color: 0xFFFF5555,
+                    //         width: 2
+                    //     },
+                    // },
+                    child: {
+                        type: "text",
+                        value: err.message + " !",
+                        style: {
+                            color: 0xFFFF5555,
                         }
                     }
                 }
-            },
-            {
-                type: "dropdownButton",
-                text: field.unit ? `${field.unit.name} (${field.unit.shortName})` : 'Choose unit',
-                mainStyle: "secondary",
-                disabled: !editable,
-                // icon: "expand_more",
-                child: {
-                    type: "menu",
-                    children:
-                        unitList.map((unit) => {
-                            return {
-                                type: "menuItem",
-                                text: `${unit.name} (${unit.shortName})`,
-                                onPressed: {
-                                    action: "setCategoryFieldUnit",
-                                    props: {
-                                        categoryId: category._id,
-                                        fieldId: field.id,
-                                        unit: unit,
-                                    }
-                                }
-                            }
-                        }),
-                }
-            },
-            {
-                type: "button",
-                mainStyle: "tertiary",
-                text: "X",
-                disabled: !editable,
-                onPressed: {
-                    action: "removeCategoryField",
-                    props: {
-                        categoryId: category._id,
-                        fieldId: field.id
-                    }
-                }
-            }
+            }),
         ]
     };
 }

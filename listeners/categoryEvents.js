@@ -151,9 +151,10 @@ async function saveCategory(props, event, api) {
     category.ready = true;
     category.modifications = [];
     category.errors = [];
+    await categoryService.updateCategory(api, category);
+    return navigationService.popState(api);
   }
   await categoryService.updateCategory(api, category);
-  return navigationService.popState(api);
 }
 
 function checkCategory(category) {
@@ -176,6 +177,8 @@ function checkField(field, pos) {
   let errors = [];
   if (!field.data.name)
     errors.push({ message: "The field must have a name", target: `fields.${field.id}.name` });
+  if (!field.data.unit)
+    errors.push({ message: "The field must have unit", target: `fields.${field.id}.unit` });
   return errors;
 }
 
