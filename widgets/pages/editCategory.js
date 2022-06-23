@@ -66,10 +66,6 @@ function content(_data, { state }) {
  */
 function category(categories, props) {
     const category = categories[0];
-    console.log("----------------CATEGORIES--------------------")
-    console.log(categories)
-    console.log("----------------CATEGORIES--------------------")
-    console.log(category)
     const nameErrors = {},
         fieldListErrors = [],
         fieldsErrors = {};
@@ -88,8 +84,6 @@ function category(categories, props) {
                 fEr[target[1]].push(er.message);
             });
     }
-    console.log("----------------------FIELD LIST ERRORS----------------------");
-    console.log(fieldListErrors);
     let name = category.name;
     let modification = category.modifications.find(m => m.property == 'name');
     if (modification)
@@ -151,12 +145,6 @@ function category(categories, props) {
                             }
                         }
                     },
-                    // ...category.errors.map(error => (
-                    //     {
-                    //         type: "text",
-                    //         value: "TEST " + error.message
-                    //     })),
-
                     ...category.fields.map(field => fieldUI(category, field)),
                     ...category.modifications
                         .filter(m => m.action == 'add' && m.property == 'fields')
@@ -198,24 +186,12 @@ function category(categories, props) {
  * @returns 
  */
 function fieldUI(category, field, editable) {
-    var myErrors = [];
-    console.log("-----------FIELD ID-----------");
-    console.log(field);
-    console.log("-----------CATEGORY-----------");
-    console.log(category);
-    console.log("-----------FOREACH-----------");
+    var fieldErrors = [];
     (category.errors).forEach(err => {
-        console.log(err);
-        console.log(field);
         if (err.target.split('.')[1] == field.id) {
-            myErrors.push(err);
+            fieldErrors.push(err);
         }
     });
-
-    console.log("-----------CATEGORY-----------")
-    console.log("-----------CATEGORY-----------")
-    console.log("-----------CATEGORY-----------")
-    console.log(myErrors);
     return {
         type: "flex",
         direction: "vertical",
@@ -284,7 +260,7 @@ function fieldUI(category, field, editable) {
                     }
                 ]
             },
-            ...myErrors.map(err => {
+            ...fieldErrors.map(err => {
                 return {
                     type: "container",
                     padding: {
