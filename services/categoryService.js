@@ -31,7 +31,7 @@ module.exports = {
             "$find": {
                 "_datastore": datastoreName,
                 "_refs": {
-                    "$constains": "@me"
+                    "$contains": "@me"
                 }
             }
         });
