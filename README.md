@@ -53,8 +53,12 @@ docker run -it --rm -p 4000:4000 -v "${PWD}:/home/app/function" lenra/devtools-n
 
 You can then access the application by opening `localhost:4000` on your web browser. 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+In this application, you will find categories and tries. 
+You can think of categories as ideas of cooking recipes and tries as trying different quantities for the contents of the recipe.
 
+Let's admit that you want to cook something new, you start by creating the category "My New Recipe" and add some fields which are the ingredients of your recipe. Then you create a new try and fill the values for each ingredient.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- CONTRIBUTING -->
