@@ -38,7 +38,7 @@
 ## Prerequisites
 
 To properly run this application, make sure that `npm` is installed on your computer.
-Then, run `npm i` at the root of the application to install all of the dependencies needed to run Minella.
+Then, run `npm i` at the root of the application to install all of the dependencies needed to run Troy.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
