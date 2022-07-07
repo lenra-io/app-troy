@@ -40,6 +40,8 @@
 To properly run this application, make sure that `npm` is installed on your computer.
 Then, run `npm i` at the root of the application to install all of the dependencies needed to run Troy.
 
+You will also need `docker`. Installation instructions can be found here https://docs.docker.com/engine/install/.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
