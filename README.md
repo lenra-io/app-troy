@@ -105,4 +105,4 @@ Project Link: [https://github.com/lenra-io/app-troy](https://github.com/lenra-io
 [issues-shield]: https://img.shields.io/github/issues/lenra-io/app-troy.svg?style=for-the-badge
 [issues-url]: https://github.com/lenra-io/app-troy/issues
 [license-shield]: https://img.shields.io/github/license/lenra-io/app-troy.svg?style=for-the-badge
-[license-url]: https://github.com/lenra-io/app-troy/blob/master/LICENSE.txt
+[license-url]: https://github.com/lenra-io/app-troy/blob/master/LICENSE
