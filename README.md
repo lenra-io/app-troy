@@ -37,10 +37,8 @@
 
 ## Prerequisites
 
-To properly run this application, make sure that `npm` is installed on your computer.
-Then, run `npm i` at the root of the application to install all of the dependencies needed to run Troy.
-
-You will also need `docker`. Installation instructions can be found here https://docs.docker.com/engine/install/.
+To properly run this application, you will have to make sure that the Lenra CLI and docker with docker-compose are installed on your computer.
+Installation instructions can be found here https://github.com/lenra-io/lenra_cli.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -48,9 +46,14 @@ You will also need `docker`. Installation instructions can be found here https:/
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this command to run Troy :
+To run Troy you first need to build the application.
 ```console
-docker run -it --rm -p 4000:4000 -v "${PWD}:/home/app/function" lenra/devtools-node12:beta
+lenra build
+```
+
+Then you can start it.
+```console
+lenra start
 ```
 
 You can then access the application by opening [`localhost:4000`](http://localhost:4000) on your web browser. 
