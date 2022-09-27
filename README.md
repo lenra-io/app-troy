@@ -24,9 +24,9 @@
     Troy is a generic attempt management application.
     <br />
     <br />
-    <a href="https://github.com/lenra-io/app-minella/issues">Report Bug</a>
+    <a href="https://github.com/lenra-io/app-troy/issues">Report Bug</a>
     ·
-    <a href="https://github.com/lenra-io/app-minella/issues">Request Feature</a>
+    <a href="https://github.com/lenra-io/app-troy/issues">Request Feature</a>
   </p>
 </div>
 
