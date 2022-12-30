@@ -9,7 +9,7 @@ const tryService = require('../../services/tryService.js')
  */
 function content(_data, props) {
     let tryListFind = {
-        "_datastore": tryService.datastoreName,
+        "_datastore": tryService.collName,
         "_refs": {
             "$contains": "@me"
         }
@@ -44,7 +44,7 @@ function content(_data, props) {
                         name: "home_categoryFilter",
                         query: {
                             "$find": {
-                                "_datastore": categoryService.datastoreName,
+                                "_datastore": categoryService.collName,
                                 "_refs": {
                                     "$contains": "@me"
                                 }
@@ -144,7 +144,7 @@ function menu(_data, props) {
         name: "home_menuWithCategories",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_refs": {
                     "$contains": "@me"
                 },

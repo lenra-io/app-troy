@@ -19,7 +19,7 @@ function content(categories, props) {
                     name: "categoryList",
                     query: {
                         "$find": {
-                            "_datastore": categoryService.datastoreName,
+                            "_datastore": categoryService.collName,
                             "_refs": {
                                 "$contains": ["@me"]
                             }

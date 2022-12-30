@@ -9,7 +9,7 @@ function menu(_data, props) {
         name: "editCategory_menuSave",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_id": props.state.category
             }
         }
@@ -51,7 +51,7 @@ function content(_data, { state }) {
         name: "editCategory_category",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_id": state.category
             }
         }

@@ -1,18 +1,18 @@
 'use strict'
 
-const dataService = require("./lenraDataService.js");
+const apiService = require("./api");
 const Category = require("../classes/Category.js");
-const datastoreName = 'categories';
+const collName = 'categories';
 
 module.exports = {
-    datastoreName,
+    collName,
     /**
      * @param {*} api 
      * @param {Category} category The category 
      * @returns {Promise<Category>}
      */
     async createCategory(api, category) {
-        return dataService.createData(api, datastoreName, category);
+        return apiService.createDoc(api, collName, category);
     },
     /**
      * @param {*} api 
@@ -20,19 +20,16 @@ module.exports = {
      * @returns {Promise<Category>}
      */
     async getCategory(api, categoryId) {
-        return dataService.getData(api, datastoreName, categoryId);
+        return apiService.getDoc(api, collName, categoryId);
     },
     /**
      * @param {*} api 
      * @returns {Promise<Category[]>}
      */
     async getUserCategories(api) {
-        return await dataService.executeQuery(api, {
-            "$find": {
-                "_datastore": datastoreName,
-                "_refs": {
-                    "$contains": "@me"
-                }
+        return await apiService.executeQuery(api, collName, {
+            "_refs": {
+                "$contains": "@me"
             }
         });
     },
@@ -42,6 +39,6 @@ module.exports = {
      * @returns {Promise<Category>}
      */
     async updateCategory(api, category) {
-        return await dataService.updateData(api, datastoreName, category);
+        return await apiService.updateDoc(api, collName, category);
     }
 }

@@ -36,7 +36,7 @@ function content(_data, props) {
                         name: "categoryList",
                         query: {
                             "$find": {
-                                "_datastore": categoryService.datastoreName,
+                                "_datastore": categoryService.collName,
                                 "_refs": {
                                     "$contains": ["@me"]
                                 }
@@ -98,7 +98,7 @@ function content(_data, props) {
                             name: "tryList",
                             query: {
                                 "$find": {
-                                    "_datastore": tryService.datastoreName,
+                                    "_datastore": tryService.collName,
                                     "_refs": {
                                         "$contains": ["@me"]
                                     }

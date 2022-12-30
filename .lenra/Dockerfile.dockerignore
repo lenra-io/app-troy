@@ -2,6 +2,7 @@
 !/*.json
 !/server.js
 !/index.js
+!/classes/
 !/listeners/
 !/resources/
 !/services/

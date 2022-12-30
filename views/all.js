@@ -16,7 +16,7 @@ function main() {
     name: "app",
     query: {
       "$find": {
-        "_datastore": userService.datastoreName,
+        "_datastore": userService.collName,
         "_id": "@me"
       }
     }

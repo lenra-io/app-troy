@@ -87,12 +87,10 @@ function tryCard(tries, props) {
     return {
         type: "view",
         name: "tryCardWithCategory",
+        coll: categoryService.collName,
         query: {
-            "$find": {
-                "_datastore": categoryService.datastoreName,
-                "_refBy": {
-                    "$contains": currentTry._id
-                }
+            "_refBy": {
+                "$contains": currentTry._id
             }
         },
         props
@@ -177,7 +175,7 @@ function categoryCard(categories, props) {
         },
         query: {
             "$find": {
-                "_datastore": tryService.datastoreName,
+                "_datastore": tryService.collName,
                 "_refs": {
                     "$contains": category._id
                 }

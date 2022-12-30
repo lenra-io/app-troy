@@ -10,7 +10,7 @@ function menu(data, props) {
         name: "ariane",
         query: {
             "$find": {
-                "_datastore": userService.datastoreName,
+                "_datastore": userService.collName,
                 "_id": "@me"
             }
         }
@@ -103,7 +103,7 @@ function fillWidgetPageName(state, view) {
                 props: { view },
                 query: {
                     "$find": {
-                        "_datastore": categoryService.datastoreName,
+                        "_datastore": categoryService.collName,
                         "_id": state.category
                     }
                 }

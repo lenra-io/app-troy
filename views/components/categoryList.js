@@ -19,7 +19,7 @@ module.exports = function (categories, props) {
           name: "categoryCard",
           query: {
             "$find": {
-              "_datastore": categoryService.datastoreName,
+              "_datastore": categoryService.collName,
               "_id": c._id
             }
           },

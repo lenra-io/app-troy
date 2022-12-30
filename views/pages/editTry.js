@@ -33,7 +33,7 @@ function content(_data, props) {
         name: "editTry_contentWithCategory",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_refBy": {
                     "$contains": [props.state.try]
                 }
@@ -97,7 +97,7 @@ function contentWithCategory(categories, props) {
                                             name: "editTry_tryField",
                                             query: {
                                                 "$find": {
-                                                    "_datastore": tryService.datastoreName,
+                                                    "_datastore": tryService.collName,
                                                     "_id": props.try
                                                 }
                                             },
