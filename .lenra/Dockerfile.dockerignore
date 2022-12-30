@@ -1,0 +1,8 @@
+**
+!/*.json
+!/server.js
+!/index.js
+!/listeners/
+!/resources/
+!/services/
+!/views/

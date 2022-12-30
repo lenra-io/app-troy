@@ -15,7 +15,7 @@ module.exports = function (categories, props) {
       .map(c => {
         console.log(c);
         return {
-          type: "widget",
+          type: "view",
           name: "categoryCard",
           query: {
             "$find": {

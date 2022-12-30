@@ -24,14 +24,14 @@ module.exports = (users, _props) => {
     crossAxisAlignment: "center",
     children: [
       {
-        type: "widget",
+        type: "view",
         name: `${user.navigation.state.page}_menu`,
         props: {
           state: user.navigation.state
         }
       },
       {
-        type: "widget",
+        type: "view",
         name: `${user.navigation.state.page}_content`,
         props: {
           state: user.navigation.state
@@ -102,7 +102,7 @@ function modal(modal, user) {
               },
               padding: ui.padding.all(2),
               child: {
-                type: "widget",
+                type: "view",
                 name: `modal_${modal}_content`,
                 props: {
                   state: user.navigation.state

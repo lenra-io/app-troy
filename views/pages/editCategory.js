@@ -5,7 +5,7 @@ const unitList = Unit.list;
 
 function menu(_data, props) {
     return {
-        type: "widget",
+        type: "view",
         name: "editCategory_menuSave",
         query: {
             "$find": {
@@ -23,7 +23,7 @@ function menu(_data, props) {
 function menuSave(categories, props) {
     const category = categories[0];
     return {
-        type: "widget",
+        type: "view",
         name: "menu",
         props: {
             mainAction: {
@@ -47,7 +47,7 @@ function menuSave(categories, props) {
  */
 function content(_data, { state }) {
     return {
-        type: "widget",
+        type: "view",
         name: "editCategory_category",
         query: {
             "$find": {

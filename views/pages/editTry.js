@@ -5,7 +5,7 @@ const tryService = require("../../services/tryService");
 
 function menu() {
     return {
-        type: "widget",
+        type: "view",
         name: "menu",
         // props: {
         //     mainAction: {
@@ -29,7 +29,7 @@ function menu() {
  */
 function content(_data, props) {
     return {
-        type: "widget",
+        type: "view",
         name: "editTry_contentWithCategory",
         query: {
             "$find": {
@@ -93,7 +93,7 @@ function contentWithCategory(categories, props) {
                                     {
                                         type: "flexible",
                                         child: {
-                                            type: "widget",
+                                            type: "view",
                                             name: "editTry_tryField",
                                             query: {
                                                 "$find": {

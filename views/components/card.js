@@ -85,7 +85,7 @@ function tryCard(tries, props) {
     props = props || {};
     props.try = currentTry;
     return {
-        type: "widget",
+        type: "view",
         name: "tryCardWithCategory",
         query: {
             "$find": {
@@ -170,7 +170,7 @@ function categoryCard(categories, props) {
         });
     }
     children.push({
-        type: "widget",
+        type: "view",
         name: "categoryCardDetails",
         props: {
             fieldsNumber: category.fields.length

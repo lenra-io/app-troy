@@ -1,0 +1,59 @@
+services:
+  app:
+    image: lenra/app/app-troy:update-lenra
+    build:
+      context: ..
+      dockerfile: .lenra/Dockerfile
+  devtool:
+    healthcheck:
+      test:
+      - CMD
+      - wget
+      - --spider
+      - -q
+      - http://localhost:4000/health
+      interval: 1s
+      retries: 5
+      start_period: 10s
+    image: lenra/devtools:beta
+    ports:
+    - 4000:4000
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lenra_devtool
+      POSTGRES_HOST: postgres
+      OF_WATCHDOG_URL: http://app:8080
+      LENRA_API_URL: http://devtool:4000
+      MONGO_URL: mongodb://mongodb:27017
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+  postgres:
+    healthcheck:
+      test:
+      - CMD
+      - pg_isready
+      - -U
+      - postgres
+      interval: 1s
+      retries: 5
+      start_period: 5s
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lenra_devtool
+  mongodb:
+    healthcheck:
+      test: test $$(echo "rs.initiate($$CONFIG).ok || rs.status().ok" | mongo --quiet) -eq 1
+      interval: 1s
+      retries: 5
+      start_period: 5s
+    image: mongo:5.0.11-focal
+    environment:
+      MONGO_INITDB_DATABASE: test
+      CONFIG: '{"_id" : "rs0", "members" : [{"_id" : 0,"host" : "mongodb:27017"}]}'
+    command: mongod --replSet rs0
