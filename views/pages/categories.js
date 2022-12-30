@@ -15,11 +15,11 @@ function content(categories, props) {
                 type: "container",
                 constraints: { maxWidth: 1200 },
                 child: {
-                    type: "widget",
+                    type: "view",
                     name: "categoryList",
                     query: {
                         "$find": {
-                            "_datastore": categoryService.datastoreName,
+                            "_datastore": categoryService.collName,
                             "_refs": {
                                 "$contains": ["@me"]
                             }
@@ -44,7 +44,7 @@ function content(categories, props) {
 
 function menu(data, props) {
     return {
-        type: "widget",
+        type: "view",
         name: "menu",
         props: {
             mainAction: {

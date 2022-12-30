@@ -5,7 +5,7 @@ const lenraDataService = require("../services/lenraDataService.js");
 const navigationService = require('../services/navigationService.js');
 const tryService = require('../services/tryService.js');
 
-const datastores = [tryService.datastoreName, categoryService.datastoreName];
+const datastores = [tryService.collName, categoryService.collName];
 
 function onEnvStart(props, event, api) {
     const promises = datastores.map(ds => lenraDataService.createDatastore(api, ds).catch((e => { })));

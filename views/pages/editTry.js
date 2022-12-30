@@ -5,7 +5,7 @@ const tryService = require("../../services/tryService");
 
 function menu() {
     return {
-        type: "widget",
+        type: "view",
         name: "menu",
         // props: {
         //     mainAction: {
@@ -29,11 +29,11 @@ function menu() {
  */
 function content(_data, props) {
     return {
-        type: "widget",
+        type: "view",
         name: "editTry_contentWithCategory",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_refBy": {
                     "$contains": [props.state.try]
                 }
@@ -93,11 +93,11 @@ function contentWithCategory(categories, props) {
                                     {
                                         type: "flexible",
                                         child: {
-                                            type: "widget",
+                                            type: "view",
                                             name: "editTry_tryField",
                                             query: {
                                                 "$find": {
-                                                    "_datastore": tryService.datastoreName,
+                                                    "_datastore": tryService.collName,
                                                     "_id": props.try
                                                 }
                                             },

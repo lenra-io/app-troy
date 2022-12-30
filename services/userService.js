@@ -1,11 +1,11 @@
 'use strict'
 
-const dataService = require("./lenraDataService.js");
+const apiService = require("./api");
 const User = require("../classes/User.js");
-const datastoreName = '_users';
+const collName = '_users';
 
 module.exports = {
-    datastoreName,
+    collName,
     /**
      * @param {*} api 
      * @param {User | number} userData 
@@ -14,13 +14,10 @@ module.exports = {
     async getUser(api, userData) {
         if (userData) {
             if (userData._id) return userData;
-            return await dataService.getData(api, datastoreName, userData);
+            return await apiService.getDoc(api, collName, userData);
         }
-        return await dataService.executeQuery(api, {
-            "$find": {
-                "_datastore": datastoreName,
-                "_id": "@me"
-            }
+        return await apiService.executeQuery(api, collName, {
+            "_id": "@me"
         }).then(users => users[0]);
     },
     /**
@@ -35,6 +32,6 @@ module.exports = {
             user._refs = undefined;
             user._refBy = undefined;
         }
-        return dataService.updateData(api, datastoreName, user);
+        return dataService.updateData(api, collName, user);
     }
 }

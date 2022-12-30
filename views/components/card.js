@@ -85,14 +85,12 @@ function tryCard(tries, props) {
     props = props || {};
     props.try = currentTry;
     return {
-        type: "widget",
+        type: "view",
         name: "tryCardWithCategory",
+        coll: categoryService.collName,
         query: {
-            "$find": {
-                "_datastore": categoryService.datastoreName,
-                "_refBy": {
-                    "$contains": currentTry._id
-                }
+            "_refBy": {
+                "$contains": currentTry._id
             }
         },
         props
@@ -170,14 +168,14 @@ function categoryCard(categories, props) {
         });
     }
     children.push({
-        type: "widget",
+        type: "view",
         name: "categoryCardDetails",
         props: {
             fieldsNumber: category.fields.length
         },
         query: {
             "$find": {
-                "_datastore": tryService.datastoreName,
+                "_datastore": tryService.collName,
                 "_refs": {
                     "$contains": category._id
                 }

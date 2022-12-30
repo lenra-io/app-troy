@@ -5,11 +5,11 @@ const unitList = Unit.list;
 
 function menu(_data, props) {
     return {
-        type: "widget",
+        type: "view",
         name: "editCategory_menuSave",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_id": props.state.category
             }
         }
@@ -23,7 +23,7 @@ function menu(_data, props) {
 function menuSave(categories, props) {
     const category = categories[0];
     return {
-        type: "widget",
+        type: "view",
         name: "menu",
         props: {
             mainAction: {
@@ -47,11 +47,11 @@ function menuSave(categories, props) {
  */
 function content(_data, { state }) {
     return {
-        type: "widget",
+        type: "view",
         name: "editCategory_category",
         query: {
             "$find": {
-                "_datastore": categoryService.datastoreName,
+                "_datastore": categoryService.collName,
                 "_id": state.category
             }
         }

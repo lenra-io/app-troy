@@ -15,11 +15,11 @@ module.exports = function (categories, props) {
       .map(c => {
         console.log(c);
         return {
-          type: "widget",
+          type: "view",
           name: "categoryCard",
           query: {
             "$find": {
-              "_datastore": categoryService.datastoreName,
+              "_datastore": categoryService.collName,
               "_id": c._id
             }
           },

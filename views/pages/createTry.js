@@ -3,7 +3,7 @@ const tryService = require('../../services/tryService.js')
 
 function menu(_data, props) {
     return {
-        type: "widget",
+        type: "view",
         name: "menu"
     }
 }
@@ -32,11 +32,11 @@ function content(_data, props) {
                         }
                     },
                     {
-                        type: "widget",
+                        type: "view",
                         name: "categoryList",
                         query: {
                             "$find": {
-                                "_datastore": categoryService.datastoreName,
+                                "_datastore": categoryService.collName,
                                 "_refs": {
                                     "$contains": ["@me"]
                                 }
@@ -58,7 +58,7 @@ function content(_data, props) {
                     //         .filter(([_, c]) => c.ready)
                     //         .sort(([_a, a], [_b, b]) => a.name.localeCompare(b.name))
                     //         .map(([id, _]) => ({
-                    //             type: "widget",
+                    //             type: "view",
                     //             name: "categoryCard",
                     //             props: {
                     //                 id,
@@ -94,11 +94,11 @@ function content(_data, props) {
                         type: "container",
                         constraints: { maxWidth: 1200 },
                         child: {
-                            type: "widget",
+                            type: "view",
                             name: "tryList",
                             query: {
                                 "$find": {
-                                    "_datastore": tryService.datastoreName,
+                                    "_datastore": tryService.collName,
                                     "_refs": {
                                         "$contains": ["@me"]
                                     }
@@ -121,7 +121,7 @@ function content(_data, props) {
                     //     children: Object.values(tries)
                     //         .sort((a, b) => b.date - a.date)
                     //         .map(t => ({
-                    //             type: "widget",
+                    //             type: "view",
                     //             name: "tryCard",
                     //             props: {
                     //                 id: t.id,
